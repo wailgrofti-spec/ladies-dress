@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-blush-100 text-charcoal-800 font-body antialiased;
+}
+
+[dir='rtl'] body {
+  @apply font-arabic;
+}
+
+/* Empêche tout défilement horizontal parasite sur mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+::selection {
+  background-color: theme('colors.rosegold.300');
+  color: theme('colors.charcoal.900');
+}
+
+.container-app {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-rosegold-400 px-6 py-3 text-sm font-semibold text-white shadow-card transition-colors hover:bg-rosegold-500 active:bg-rosegold-600;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-rosegold-400 bg-transparent px-6 py-3 text-sm font-semibold text-rosegold-500 transition-colors hover:bg-rosegold-400 hover:text-white;
+}
+
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-card transition-transform hover:scale-[1.02];
+}
+
+.card {
+  @apply rounded-soft bg-white shadow-card dark:bg-admin-surface2 dark:shadow-none;
+}
+
+.badge {
+  @apply inline-block rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide;
+}
