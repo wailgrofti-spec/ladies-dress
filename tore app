@@ -1,0 +1,101 @@
+warning: in the working copy of '.env.example', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/Footer.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/Header.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ProductCard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ProductDetail.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/ShopGrid.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/AdminShell.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/ProductsTable.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components/admin/SettingsContentForm.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/cart-context.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/data.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/orders-data.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'lib/whatsapp.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'messages/ar.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'messages/en.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'messages/fr.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'supabase/schema.sql', LF will be replaced by CRLF the next time Git touches it
+ .env.example                                       |   2 [32m+[m[31m-[m
+ README.md                                          | 107 [32m++++++[m[31m--[m
+ app/[locale]/a-propos/page.tsx                     |  24 [31m--[m
+ app/[locale]/boutique/[categorie]/page.tsx         |  29 [31m---[m
+ app/[locale]/boutique/page.tsx                     |  18 [31m--[m
+ app/[locale]/cgv/page.tsx                          |  13 [31m-[m
+ .../commande/confirmation/[numero]/page.tsx        |  22 [31m--[m
+ app/[locale]/commande/page.tsx                     | 228 [31m-----------------[m
+ app/[locale]/confidentialite/page.tsx              |  12 [31m-[m
+ app/[locale]/contact/page.tsx                      |  36 [31m---[m
+ app/[locale]/echange-retour/page.tsx               |  12 [31m-[m
+ app/[locale]/faq/page.tsx                          |  23 [31m--[m
+ app/[locale]/favoris/page.tsx                      |  46 [31m----[m
+ app/[locale]/guide-des-tailles/page.tsx            |  32 [31m---[m
+ app/[locale]/layout.tsx                            |  40 [31m---[m
+ app/[locale]/livraison/page.tsx                    |  17 [31m--[m
+ app/[locale]/page.tsx                              | 191 [31m---------------[m
+ app/[locale]/panier/page.tsx                       | 131 [31m----------[m
+ app/[locale]/produit/[slug]/page.tsx               | 100 [31m--------[m
+ app/[locale]/suivi-commande/page.tsx               |  34 [31m---[m
+ app/admin/avis/page.tsx                            |   5 [31m-[m
+ app/admin/categories/page.tsx                      |  19 [31m--[m
+ app/admin/clients/page.tsx                         |  19 [31m--[m
+ app/admin/codes-promo/page.tsx                     | 133 [31m----------[m
+ app/admin/commandes/[id]/page.tsx                  |  18 [31m--[m
+ app/admin/commandes/page.tsx                       |  15 [31m--[m
+ app/admin/contenu/page.tsx                         |  19 [31m--[m
+ app/admin/dashboard/page.tsx                       | 182 [31m--------------[m
+ app/admin/layout.tsx                               |  15 [31m--[m
+ app/admin/login/page.tsx                           |  77 [31m------[m
+ app/admin/parametres/page.tsx                      |  22 [31m--[m
+ app/admin/produits/[id]/modifier/page.tsx          |  19 [31m--[m
+ app/admin/produits/nouveau/page.tsx                |  15 [31m--[m
+ app/admin/produits/page.tsx                        |  16 [31m--[m
+ app/api/categories/[id]/route.ts                   |  21 [31m--[m
+ app/api/categories/route.ts                        |  27 [31m---[m
+ app/api/orders/[id]/route.ts                       |  51 [31m----[m
+ app/api/orders/route.ts                            |  79 [31m------[m
+ app/api/product-views/route.ts                     |  11 [31m-[m
+ app/api/products/[id]/route.ts                     |  75 [31m------[m
+ app/api/products/[id]/stock/route.ts               |  50 [31m----[m
+ app/api/products/import/route.ts                   |  78 [31m------[m
+ app/api/products/public/route.ts                   |  10 [31m-[m
+ app/api/products/route.ts                          |  66 [31m-----[m
+ app/api/promo-codes/[id]/route.ts                  |  21 [31m--[m
+ app/api/promo-codes/route.ts                       |  37 [31m---[m
+ app/api/promo-codes/validate/route.ts              |  42 [31m----[m
+ app/api/reviews/[id]/route.ts                      |  21 [31m--[m
+ app/api/reviews/route.ts                           |  42 [31m----[m
+ app/api/search/route.ts                            |  26 [31m--[m
+ app/api/settings/route.ts                          |  31 [31m---[m
+ app/api/shipping-zones/[id]/route.ts               |  21 [31m--[m
+ app/api/shipping-zones/route.ts                    |  22 [31m--[m
+ app/api/shipping/public/route.ts                   |  16 [31m--[m
+ app/globals.css                                    |  50 [31m----[m
+ app/layout.tsx                                     |  37 [31m---[m
+ app/robots.ts                                      |  16 [31m--[m
+ app/sitemap.ts                                     |  47 [31m----[m
+ components/Footer.tsx                              |  25 [32m+[m[31m-[m
+ components/Header.tsx                              |  16 [32m+[m[31m-[m
+ components/ProductCard.tsx                         |  25 [32m+[m[31m-[m
+ components/ProductDetail.tsx                       |  28 [32m+[m[31m--[m
+ components/ProductReviews.tsx                      | 144 [31m-----------[m
+ components/RecentlyViewedSection.tsx               |  41 [31m----[m
+ components/ShopGrid.tsx                            | 166 [32m+++[m[31m----------[m
+ components/ViewTracker.tsx                         |  20 [31m--[m
+ components/admin/AdminShell.tsx                    |   4 [32m+[m[31m-[m
+ components/admin/ProductsTable.tsx                 |  48 [32m+[m[31m---[m
+ components/admin/ReviewsModeration.tsx             |  96 [31m--------[m
+ components/admin/SettingsContentForm.tsx           |   2 [32m+[m[31m-[m
+ components/admin/ShippingSettings.tsx              | 147 [31m-----------[m
+ lib/cart-context.tsx                               |  60 [32m+[m[31m----[m
+ lib/data.ts                                        |  35 [32m+[m[31m--[m
+ lib/demo-data.ts                                   | 269 [31m---------------------[m
+ lib/orders-data.ts                                 |  39 [32m++[m[31m-[m
+ lib/recently-viewed-context.tsx                    |  48 [31m----[m
+ lib/utils.ts                                       |  31 [31m---[m
+ lib/whatsapp.ts                                    |  56 [32m+++[m[31m--[m
+ messages/ar.json                                   |  66 [32m++[m[31m---[m
+ messages/en.json                                   |  68 [32m++[m[31m----[m
+ messages/fr.json                                   |  66 [32m++[m[31m---[m
+ supabase/schema.sql                                |   4 [32m+[m[31m-[m
+ 82 files changed, 319 insertions(+), 3773 deletions(-)

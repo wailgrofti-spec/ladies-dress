@@ -1,21 +1,20 @@
 {
   "brand": "Ladies Dress",
+  "slogan": "Walk with elegance",
   "nav": {
     "home": "Home",
     "shop": "Shop",
     "about": "About",
     "contact": "Contact",
-    "faq": "FAQ",
-    "cart": "Cart",
-    "track": "Track my order"
+    "cart": "Cart"
   },
   "home": {
     "heroTitle": "Shoes that look like you",
-    "heroSubtitle": "Launch offer: -15% on the whole collection with code BIENVENUE15",
+    "heroSubtitle": "Discover our exclusive collection and find your perfect pair.",
     "heroCta": "Discover the collection",
     "newArrivals": "New arrivals",
-    "bestsellers": "Bestsellers",
     "categoriesTitle": "Our categories",
+    "viewAll": "View all",
     "whyUs": "Why choose Ladies Dress",
     "whyUsItems": [
       { "title": "Cash on delivery", "text": "Pay with confidence when your parcel arrives." },
@@ -29,7 +28,11 @@
     "newsletterText": "Sign up to get our offers first.",
     "newsletterPlaceholder": "Your email address",
     "newsletterCta": "Subscribe",
-    "deliveryInfo": "Delivery within 24 to 72h depending on your city • Cash on delivery available across Morocco"
+    "trustBar": {
+      "delivery": { "title": "Delivery 24h - 72h", "subtitle": "depending on your city" },
+      "cod": { "title": "Cash on delivery", "subtitle": "available" },
+      "nationwide": { "title": "Available", "subtitle": "across Morocco" }
+    }
   },
   "product": {
     "addToCart": "Add to cart",
@@ -42,70 +45,31 @@
     "delivery": "Delivery",
     "returns": "Exchange & returns",
     "similar": "Similar products",
-    "reviews": "Customer reviews",
     "outOfStock": "Out of stock",
     "inStock": "In stock",
     "lowStock": "Only {count} left",
     "new": "New",
-    "promo": "Sale",
-    "bestseller": "Bestseller",
-    "quantity": "Quantity"
+    "quantity": "Quantity",
+    "freeShipping": "Free shipping all over Morocco"
   },
   "shop": {
     "title": "All shoes",
     "filters": "Filters",
     "category": "Category",
-    "price": "Price",
-    "size": "Size",
-    "color": "Color",
-    "availability": "Availability",
-    "sortBy": "Sort by",
-    "sortNewest": "Newest",
-    "sortPriceAsc": "Price: low to high",
-    "sortPriceDesc": "Price: high to low",
-    "sortPopular": "Popularity",
     "noResults": "No products match your search.",
     "viewProduct": "View product",
     "clearFilters": "Clear filters"
   },
   "cart": {
-    "title": "My cart",
+    "title": "My Cart",
     "empty": "Your cart is empty.",
     "continueShopping": "Continue shopping",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping",
-    "promoCode": "Promo code",
-    "apply": "Apply",
-    "total": "Total",
-    "checkout": "Checkout",
+    "total": "Products total",
     "remove": "Remove",
     "color": "Color",
-    "size": "Size"
-  },
-  "checkout": {
-    "title": "Complete my order",
-    "fullName": "Full name",
-    "phone": "Phone number",
-    "whatsapp": "WhatsApp number",
-    "city": "City",
-    "address": "Full address",
-    "neighborhood": "Neighborhood",
-    "landmark": "Landmark (optional)",
-    "comment": "Comment (optional)",
-    "paymentMethod": "Payment method",
-    "cod": "Cash on delivery",
-    "online": "Online payment",
-    "bankTransfer": "Bank transfer",
-    "submit": "Confirm my order",
-    "orWhatsapp": "or send directly on WhatsApp",
-    "required": "This field is required"
-  },
-  "confirmation": {
-    "title": "Thank you for your order!",
-    "text": "Your order has been recorded.",
-    "orderNumber": "Order number",
-    "nextSteps": "We'll contact you shortly to confirm delivery details.",
-    "backHome": "Back to home"
+    "size": "Size",
+    "sendWhatsapp": "Send order directly on WhatsApp",
+    "freeShippingNote": "Free shipping all over Morocco"
   },
   "footer": {
     "about": "About",

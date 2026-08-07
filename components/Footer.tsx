@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { Instagram, Facebook } from 'lucide-react';
+import { socialSettings } from '@/lib/settings/social';
+import { storeSettings } from '@/lib/settings/store';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -9,7 +11,6 @@ export default function Footer() {
   const about = [
     { href: `/${locale}/a-propos`, label: t('about') },
     { href: `/${locale}/contact`, label: 'Contact' },
-    { href: `/${locale}/faq`, label: 'FAQ' },
   ];
   const help = [
     { href: `/${locale}/guide-des-tailles`, label: 'Guide des tailles' },
@@ -26,15 +27,27 @@ export default function Footer() {
     <footer className="mt-16 border-t border-blush-200 bg-white">
       <div className="container-app grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
         <div className="col-span-2 md:col-span-1">
-          <p className="font-display text-lg font-semibold text-rosegold-500">Ladies Dress</p>
+          <p className="font-display text-lg font-semibold text-rosegold-500">{storeSettings.name}</p>
           <p className="mt-2 text-sm text-charcoal-700">
-            Chaussures pour femmes, livrées partout au Maroc.
+            {storeSettings.tagline}
           </p>
           <div className="mt-4 flex gap-3">
-            <a href="#" aria-label="Instagram" className="rounded-full bg-blush-100 p-2 hover:bg-blush-200">
+            <a
+              href={socialSettings.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ouvrir Instagram Ladies Dress"
+              className="rounded-full bg-blush-100 p-2 hover:bg-blush-200"
+            >
               <Instagram size={18} />
             </a>
-            <a href="#" aria-label="Facebook" className="rounded-full bg-blush-100 p-2 hover:bg-blush-200">
+            <a
+              href={socialSettings.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ouvrir Facebook Ladies Dress"
+              className="rounded-full bg-blush-100 p-2 hover:bg-blush-200"
+            >
               <Facebook size={18} />
             </a>
           </div>
@@ -46,7 +59,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-blush-200 py-4 text-center text-xs text-charcoal-700">
-        © {new Date().getFullYear()} Ladies Dress — {t('rights')}
+        © {new Date().getFullYear()} {storeSettings.name} — {t('rights')}
       </div>
     </footer>
   );

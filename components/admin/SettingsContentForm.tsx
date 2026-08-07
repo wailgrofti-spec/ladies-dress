@@ -8,7 +8,7 @@ const FIELDS: { key: string; label: string; placeholder?: string; group: string 
   { key: 'logo_url', label: 'URL du logo', placeholder: 'https://...', group: 'Identité' },
   { key: 'banner_title', label: 'Titre de la bannière d\u2019accueil', group: 'Accueil' },
   { key: 'banner_subtitle', label: 'Sous-titre / offre de lancement', group: 'Accueil' },
-  { key: 'whatsapp_number', label: 'Numéro WhatsApp (format 212XXXXXXXXX)', placeholder: '212657134198', group: 'Contact' },
+  { key: 'whatsapp_number', label: 'Numéro WhatsApp (format 212XXXXXXXXX)', placeholder: '212688526718', group: 'Contact' },
   { key: 'phone_number', label: 'Téléphone', group: 'Contact' },
   { key: 'store_address', label: 'Adresse du magasin physique', group: 'Contact' },
   { key: 'instagram_url', label: 'Lien Instagram', group: 'Réseaux sociaux' },

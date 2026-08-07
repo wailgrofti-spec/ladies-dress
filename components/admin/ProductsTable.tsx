@@ -7,7 +7,7 @@ import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import {
   Plus, Search, Copy, Trash2, Pencil, EyeOff, Eye, Star,
-  Upload, Download, FileSpreadsheet, ArrowUpDown, Tag,
+  Upload, Download, FileSpreadsheet, ArrowUpDown,
 } from 'lucide-react';
 import { Product, Category, ProductStatus } from '@/lib/types';
 import { totalStock } from '@/lib/data';
@@ -33,7 +33,6 @@ export default function ProductsTable({ products, categories }: { products: Prod
   const [page, setPage] = useState(1);
   const [list, setList] = useState(products);
   const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
-  const [promoTarget, setPromoTarget] = useState<Product | null>(null);
   const [importing, setImporting] = useState(false);
 
   function categoryName(id: string) {
@@ -285,7 +284,6 @@ export default function ProductsTable({ products, categories }: { products: Prod
                           status === 'active'
                             ? { label: 'Masquer', icon: <EyeOff size={14} />, onClick: () => patch(p.id, { status: 'hidden', is_active: false }, 'Produit masqué.') }
                             : { label: 'Activer', icon: <Eye size={14} />, onClick: () => patch(p.id, { status: 'active', is_active: true }, 'Produit activé.') },
-                          { label: 'Mettre en promotion', icon: <Tag size={14} />, onClick: () => setPromoTarget(p) },
                           { label: 'Archiver', icon: <EyeOff size={14} />, onClick: () => patch(p.id, { status: 'archived', is_active: false }, 'Produit archivé.') },
                           { label: 'Supprimer', icon: <Trash2 size={14} />, onClick: () => setDeleteTarget(p), danger: true },
                         ]}
@@ -317,51 +315,7 @@ export default function ProductsTable({ products, categories }: { products: Prod
       >
         <p><strong>{deleteTarget?.name_fr}</strong> — cette action est-elle définitive ou souhaitez-vous simplement l'archiver (récupérable plus tard, non visible en boutique) ?</p>
       </Dialog>
-
-      {/* Dialog promotion rapide */}
-      {promoTarget && (
-        <PromoDialog
-          product={promoTarget}
-          onClose={() => setPromoTarget(null)}
-          onSaved={(price, oldPrice) => {
-            patch(promoTarget.id, { price, old_price: oldPrice }, 'Promotion appliquée.');
-            setPromoTarget(null);
-          }}
-        />
-      )}
     </div>
-  );
-}
-
-function PromoDialog({ product, onClose, onSaved }: { product: Product; onClose: () => void; onSaved: (price: number, oldPrice: number) => void }) {
-  const [price, setPrice] = useState(product.price.toString());
-  const [oldPrice, setOldPrice] = useState((product.old_price ?? product.price).toString());
-  const discount = discountPercent(Number(price), Number(oldPrice));
-
-  return (
-    <Dialog
-      open
-      onClose={onClose}
-      title={`Promotion — ${product.name_fr}`}
-      footer={
-        <>
-          <button onClick={onClose} className="btn-secondary !px-4 !py-2 text-sm">Annuler</button>
-          <button onClick={() => onSaved(Number(price), Number(oldPrice))} className="btn-primary !px-4 !py-2 text-sm">Appliquer</button>
-        </>
-      }
-    >
-      <div className="space-y-3">
-        <div>
-          <label className="mb-1 block text-sm font-medium">Ancien prix (barré)</label>
-          <input type="number" value={oldPrice} onChange={(e) => setOldPrice(e.target.value)} className="w-full rounded-lg border border-blush-200 px-3 py-2 text-sm dark:border-admin-border dark:bg-admin-surface" />
-        </div>
-        <div>
-          <label className="mb-1 block text-sm font-medium">Nouveau prix</label>
-          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className="w-full rounded-lg border border-blush-200 px-3 py-2 text-sm dark:border-admin-border dark:bg-admin-surface" />
-        </div>
-        {discount && <p className="text-sm font-semibold text-rosegold-500">Badge affiché : -{discount}%</p>}
-      </div>
-    </Dialog>
   );
 }
 

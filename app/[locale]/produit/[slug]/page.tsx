@@ -3,9 +3,6 @@ import { getTranslations } from 'next-intl/server';
 import { getProductBySlug, getProducts } from '@/lib/data';
 import ProductDetail from '@/components/ProductDetail';
 import ProductCard from '@/components/ProductCard';
-import ProductReviews from '@/components/ProductReviews';
-import ViewTracker from '@/components/ViewTracker';
-import RecentlyViewedSection from '@/components/RecentlyViewedSection';
 import type { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: { slug: string; locale: string } }): Promise<Metadata> {
@@ -73,15 +70,7 @@ export default async function ProductPage({ params }: { params: { slug: string; 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ViewTracker productId={product.id} slug={product.slug} />
       <ProductDetail product={product} url={url} />
-
-      <section className="container-app max-w-2xl pb-14">
-        <h2 className="font-display text-2xl font-semibold text-charcoal-900">{t('reviews')}</h2>
-        <div className="mt-6">
-          <ProductReviews productId={product.id} />
-        </div>
-      </section>
 
       {similar.length > 0 && (
         <section className="container-app pb-14">
@@ -93,8 +82,6 @@ export default async function ProductPage({ params }: { params: { slug: string; 
           </div>
         </section>
       )}
-
-      <RecentlyViewedSection excludeSlug={product.slug} />
     </div>
   );
 }

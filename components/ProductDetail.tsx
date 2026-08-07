@@ -1,14 +1,14 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { MessageCircle, ShoppingBag, Truck, RefreshCw } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { availableColors, availableSizesForColor } from '@/lib/data';
-import { formatPrice, discountPercent } from '@/lib/utils';
+import { formatPrice } from '@/lib/utils';
 import { buildWhatsappLink, buildProductWhatsappMessage } from '@/lib/whatsapp';
 import { useCart } from '@/lib/cart-context';
+import ImageWithFallback from './ImageWithFallback';
 
 function localizedField(p: Product, field: 'name' | 'description', locale: string) {
   const key = `${field}_${locale === 'ar' ? 'ar' : locale === 'en' ? 'en' : 'fr'}` as keyof Product;
@@ -27,7 +27,6 @@ export default function ProductDetail({ product, url }: { product: Product; url:
   const [activeImage, setActiveImage] = useState(0);
   const [added, setAdded] = useState(false);
 
-  const discount = discountPercent(product.price, product.old_price);
   const name = localizedField(product, 'name', locale);
   const description = localizedField(product, 'description', locale);
 
@@ -59,14 +58,13 @@ export default function ProductDetail({ product, url }: { product: Product; url:
     <div className="container-app grid gap-8 py-8 md:grid-cols-2">
       {/* Gallery */}
       <div>
-        <div className="aspect-square overflow-hidden rounded-soft bg-blush-100">
+        <div className="relative aspect-square overflow-hidden rounded-soft bg-blush-100">
           {product.images[activeImage] && (
-            <Image
+            <ImageWithFallback
               src={product.images[activeImage].url}
               alt={product.images[activeImage].alt_text_fr}
-              width={800}
-              height={800}
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
               priority
             />
           )}
@@ -77,11 +75,11 @@ export default function ProductDetail({ product, url }: { product: Product; url:
               <button
                 key={img.id}
                 onClick={() => setActiveImage(i)}
-                className={`h-16 w-16 overflow-hidden rounded-lg border-2 ${
+                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2 ${
                   i === activeImage ? 'border-rosegold-400' : 'border-transparent'
                 }`}
               >
-                <Image src={img.url} alt={img.alt_text_fr} width={64} height={64} className="h-full w-full object-cover" />
+                <ImageWithFallback src={img.url} alt={img.alt_text_fr} fill className="object-cover" />
               </button>
             ))}
           </div>
@@ -92,14 +90,8 @@ export default function ProductDetail({ product, url }: { product: Product; url:
       <div>
         <h1 className="font-display text-2xl font-semibold text-charcoal-900 sm:text-3xl">{name}</h1>
 
-        <div className="mt-3 flex items-center gap-3">
+        <div className="mt-3">
           <span className="text-2xl font-semibold text-rosegold-500">{formatPrice(product.price)}</span>
-          {product.old_price && (
-            <>
-              <span className="text-base text-charcoal-700/60 line-through">{formatPrice(product.old_price)}</span>
-              {discount && <span className="badge bg-rosegold-400 text-white">-{discount}%</span>}
-            </>
-          )}
         </div>
 
         <p className="mt-4 text-sm leading-relaxed text-charcoal-700">{description}</p>
@@ -172,7 +164,7 @@ export default function ProductDetail({ product, url }: { product: Product; url:
         <div className="mt-8 space-y-3 rounded-soft bg-blush-50 p-4">
           <div className="flex items-start gap-3 text-sm text-charcoal-700">
             <Truck size={18} className="mt-0.5 shrink-0 text-rosegold-400" />
-            <p>{t('delivery')} : 24 à 72h selon votre ville, paiement à la livraison disponible.</p>
+            <p>{t('freeShipping')} — paiement à la livraison disponible.</p>
           </div>
           <div className="flex items-start gap-3 text-sm text-charcoal-700">
             <RefreshCw size={18} className="mt-0.5 shrink-0 text-rosegold-400" />

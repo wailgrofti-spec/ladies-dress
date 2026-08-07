@@ -1,13 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
-import { Product, Locale } from '@/lib/types';
-import { formatPrice, discountPercent } from '@/lib/utils';
+import { Product } from '@/lib/types';
+import { formatPrice } from '@/lib/utils';
 import { totalStock, availableColors } from '@/lib/data';
 import { useWishlist } from '@/lib/wishlist-context';
+import ImageWithFallback from './ImageWithFallback';
 
 function localizedName(p: Product, locale: string) {
   if (locale === 'ar') return p.name_ar;
@@ -20,7 +20,6 @@ export default function ProductCard({ product }: { product: Product }) {
   const t = useTranslations('product');
   const { isSaved, toggle } = useWishlist();
   const image = product.images.find((i) => i.is_primary) ?? product.images[0];
-  const discount = discountPercent(product.price, product.old_price);
   const inStock = totalStock(product) > 0;
   const colors = availableColors(product);
   const saved = isSaved(product.id);
@@ -32,7 +31,7 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-blush-100">
         {image && (
-          <Image
+          <ImageWithFallback
             src={image.url}
             alt={image.alt_text_fr}
             fill
@@ -41,11 +40,12 @@ export default function ProductCard({ product }: { product: Product }) {
           />
         )}
 
-        <div className="absolute left-2 top-2 flex flex-col gap-1 rtl:left-auto rtl:right-2">
-          {product.is_new && <span className="badge bg-charcoal-800 text-white">{t('new')}</span>}
-          {discount && <span className="badge bg-rosegold-400 text-white">-{discount}%</span>}
-          {product.is_bestseller && <span className="badge bg-gold-400 text-white">{t('bestseller')}</span>}
-        </div>
+        {/* Seul le badge "Nouveau" reste : la boutique n'affiche plus de réduction */}
+        {product.is_new && (
+          <div className="absolute left-2 top-2 rtl:left-auto rtl:right-2">
+            <span className="badge bg-charcoal-800 text-white">{t('new')}</span>
+          </div>
+        )}
 
         <button
           onClick={(e) => { e.preventDefault(); toggle(product.id); }}
@@ -65,11 +65,8 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="p-3">
         <p className="line-clamp-1 text-sm font-medium text-charcoal-800">{localizedName(product, locale)}</p>
 
-        <div className="mt-1 flex items-center gap-2">
+        <div className="mt-1">
           <span className="font-semibold text-rosegold-500">{formatPrice(product.price)}</span>
-          {product.old_price && (
-            <span className="text-xs text-charcoal-700/60 line-through">{formatPrice(product.old_price)}</span>
-          )}
         </div>
 
         {colors.length > 0 && (

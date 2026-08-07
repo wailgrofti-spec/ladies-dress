@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import {
   LayoutDashboard, Package, ShoppingCart, FolderTree, Settings,
-  Tag, FileText, LogOut, AlertTriangle, Users, Star, Sun, Moon,
+  FileText, LogOut, AlertTriangle, Users, Sun, Moon,
 } from 'lucide-react';
 import { useAdminAuth } from '@/lib/admin-auth';
 
@@ -15,8 +15,6 @@ const navItems = [
   { href: '/admin/commandes', label: 'Commandes', icon: ShoppingCart },
   { href: '/admin/clients', label: 'Clientes', icon: Users },
   { href: '/admin/categories', label: 'Catégories', icon: FolderTree },
-  { href: '/admin/avis', label: 'Avis', icon: Star },
-  { href: '/admin/codes-promo', label: 'Codes promo', icon: Tag },
   { href: '/admin/contenu', label: 'Contenu du site', icon: FileText },
   { href: '/admin/parametres', label: 'Paramètres', icon: Settings },
 ];

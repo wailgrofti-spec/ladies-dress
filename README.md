@@ -5,6 +5,22 @@ la boutique **Ladies Dress**, en français / arabe (RTL) / anglais, avec
 espace administrateur pour gérer produits, stock, commandes et contenu sans
 toucher au code.
 
+## 🆕 Refonte majeure — boutique WhatsApp-only, sans promotions
+
+La dernière mise à jour a transformé le site en une boutique **sans code
+promo, sans avis clients, sans FAQ, avec livraison gratuite partout et une
+commande finalisée uniquement via WhatsApp** (plus de formulaire de
+commande). Voir le rapport complet livré avec cette mise à jour pour le
+détail fichier par fichier. En résumé :
+
+- Panier → un seul bouton "Envoyer la commande sur WhatsApp", plus de
+  formulaire, plus de frais de livraison affiché (gratuite partout)
+- Numéro WhatsApp centralisé : **+212 688-526718** (`lib/settings/contact.ts`)
+- Réseaux sociaux réels branchés (`lib/settings/social.ts`)
+- Nouveau hero + bandeau de confiance (livraison/paiement/disponibilité)
+- Section "Meilleures ventes", FAQ, avis clients et "Récemment consulté"
+  entièrement supprimés du site
+
 ## Sommaire
 1. [Installation en local](#1-installation-en-local)
 2. [Fonctionnement sans Supabase (mode démo)](#2-fonctionnement-sans-supabase-mode-démo)
@@ -184,27 +200,88 @@ En attendant de connecter Supabase, ces valeurs par défaut sont dans
 
 ---
 
-## 8. Structure du projet
+## 8. Structure du projet (mise à jour — architecture modulaire)
 
 ```
-app/[locale]/         → pages publiques (fr / ar / en)
-app/admin/             → espace administrateur (protégé)
-app/api/                → routes API (commandes, produits, contenu...)
-components/              → composants réutilisables (boutique)
-components/admin/        → composants réutilisables (admin)
-lib/                       → logique métier, types, accès aux données
-  data.ts                  → lecture produits/catégories (Supabase ou démo)
-  demo-data.ts              → 12 produits de démonstration
-  cart-context.tsx           → panier (localStorage)
-  whatsapp.ts                  → génération des liens WhatsApp
-  admin-auth.tsx                → authentification admin
-messages/                → traductions fr.json / ar.json / en.json
-supabase/schema.sql       → schéma complet de la base de données
+app/[locale]/            → pages publiques (fr / ar / en)
+app/admin/                → espace administrateur (protégé)
+app/api/                   → routes API (commandes, produits, contenu...)
+
+components/                 → composants réutilisables (boutique)
+components/home/             → un composant par section de la page d'accueil
+                                (Hero, Categories, NewArrivals, BestSellers,
+                                 Services, Testimonials, Newsletter)
+components/admin/            → composants réutilisables (admin)
+
+lib/products/                → LE CATALOGUE — un dossier par catégorie,
+                                un fichier par produit
+  categories.ts                 → liste des 5 catégories (source unique)
+  espadrilles/index.ts          → regroupe les produits de la catégorie
+  espadrilles/sneaker-xxx.ts    → UN produit = UN fichier
+  ballerines/ ... talons/ ... mocassins/ ... sandales/  → même principe
+  reviews.ts                    → avis rattachés à un produit précis
+  index.ts                      → agrège tout le catalogue (allProducts)
+
+lib/home/                    → données de CHAQUE section de l'accueil
+  hero.ts, categories.ts, new-arrivals.ts, bestsellers.ts,
+  services.ts, testimonials.ts, newsletter.ts
+
+lib/banners/                 → bannières (women.ts = bannière actuelle,
+                                men.ts = prêt pour plus tard, offers.ts)
+
+lib/settings/                → réglages centralisés de la boutique
+  store.ts, contact.ts, social.ts, seo.ts, shipping.ts
+
+lib/utils/                   → utilitaires génériques
+  formatPrice.ts, discounts.ts, helpers.ts
+
+lib/data.ts                  → lecture produits/catégories (Supabase ou
+                                 démo — bascule automatique)
+lib/types.ts                 → tous les types TypeScript du projet
+lib/cart-context.tsx          → panier (localStorage)
+lib/whatsapp.ts                → génération des liens WhatsApp
+lib/admin-auth.tsx              → authentification admin
+
+public/products/              → dossier de photos par produit, prêt à
+                                  recevoir vos vraies photos (voir son
+                                  propre README.md)
+
+messages/                     → traductions fr.json / ar.json / en.json
+supabase/schema.sql            → schéma complet de la base de données
 ```
+
+### Comment modifier le site au quotidien
+
+| Je veux modifier...              | J'ouvre...                                              |
+|-----------------------------------|----------------------------------------------------------|
+| Un produit existant                | `lib/products/{catégorie}/{nom-du-produit}.ts`           |
+| Ajouter un produit                  | Nouveau fichier dans `lib/products/{catégorie}/` + l'ajouter à l'`index.ts` du dossier |
+| Supprimer un produit                 | Supprimer son fichier + la ligne dans l'`index.ts` du dossier |
+| Une catégorie (nom, image, ordre)     | `lib/products/categories.ts`                             |
+| L'image de la bannière d'accueil        | `lib/banners/women.ts`                                  |
+| Combien de nouveautés/best-sellers afficher | `lib/home/new-arrivals.ts` / `lib/home/bestsellers.ts` |
+| Les témoignages de la page d'accueil      | `lib/home/testimonials.ts`                             |
+| Le numéro WhatsApp, l'adresse, les réseaux sociaux | `lib/settings/`                              |
+| Un texte (titre, bouton, label)           | `messages/fr.json`, `ar.json`, `en.json`                |
+| L'apparence d'une section de l'accueil     | `components/home/NomDeLaSection.tsx`                   |
+
+**Important à comprendre** : les textes visibles par les clientes (titres,
+boutons, descriptions d'interface) restent dans `messages/*.json` et non
+dans `lib/home/` ou `lib/products/` — c'est le système de traduction
+(next-intl) qui permet au site de fonctionner en français, arabe et
+anglais. Séparer ces textes du reste aurait cassé les versions AR/EN.
+Les données non traduites (prix, images, couleurs, stock, contacts...)
+sont, elles, centralisées dans les nouveaux dossiers ci-dessus.
+
+Une fois Supabase connecté, tout ce qui est catalogue (produits,
+catégories, avis) est automatiquement lu depuis la vraie base de données à
+la place de `lib/products/` — ces fichiers ne servent alors que de données
+de démonstration/repli, pas de contenu réellement affiché en production.
 
 L'architecture est pensée pour évoluer : `parent_type` dans la table
 `categories` permet d'ajouter plus tard des catégories `vetements`, `sacs`,
-`accessoires` sans changer la structure du site.
+`accessoires` sans changer la structure du site, et `lib/banners/men.ts`
+est déjà prêt pour une future collection homme.
 
 ---
 

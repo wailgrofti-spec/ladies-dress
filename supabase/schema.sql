@@ -340,8 +340,8 @@ insert into shipping_zones (city_name, price, free_shipping_threshold) values
 
 insert into site_settings (key, value_fr) values
   ('shop_name', 'Ladies Dress'),
-  ('whatsapp_number', '212657134198'),
-  ('phone_number', '0657134198'),
+  ('whatsapp_number', '212688526718'),
+  ('phone_number', '+212 688-526718'),
   ('banner_title', 'Des chaussures qui vous ressemblent'),
   ('banner_subtitle', 'Offre de lancement : -15% avec le code BIENVENUE15');
 

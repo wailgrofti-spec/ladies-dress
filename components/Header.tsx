@@ -12,6 +12,7 @@ import SearchBox from './SearchBox';
 
 export default function Header() {
   const t = useTranslations('nav');
+  const tBrand = useTranslations();
   const locale = useLocale();
   const { count } = useCart();
   const { count: wishlistCount } = useWishlist();
@@ -22,13 +23,12 @@ export default function Header() {
     { href: `/${locale}/boutique`, label: t('shop') },
     { href: `/${locale}/a-propos`, label: t('about') },
     { href: `/${locale}/contact`, label: t('contact') },
-    { href: `/${locale}/faq`, label: t('faq') },
   ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-blush-200 bg-blush-50/95 backdrop-blur">
       {/* --- Mobile bar (fine, gain de place) --- */}
-      <div className="relative flex h-12 items-center justify-between px-3 md:hidden">
+      <div className="relative flex h-14 items-center justify-between px-3 md:hidden">
         <div className="flex items-center gap-0.5">
           <button
             onClick={() => setOpen((o) => !o)}
@@ -40,8 +40,9 @@ export default function Header() {
           <SearchBox />
         </div>
 
-        <Link href={`/${locale}`} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <Image src="/images/logo.png" alt="Ladies Dress" width={44} height={37} className="h-9 w-auto object-contain" priority />
+        <Link href={`/${locale}`} className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center">
+          <Image src="/images/logo.png" alt="Ladies Dress" width={40} height={33} className="h-8 w-auto object-contain" priority />
+          <span className="mt-0.5 text-[9px] tracking-wide text-charcoal-700/70">{tBrand('slogan')}</span>
         </Link>
 
         <div className="flex items-center gap-0.5">
@@ -64,10 +65,11 @@ export default function Header() {
         </div>
       </div>
 
-      {/* --- Desktop bar (inchangée) --- */}
-      <div className="container-app hidden h-16 items-center justify-between md:flex">
-        <Link href={`/${locale}`} className="flex items-center gap-2">
+      {/* --- Desktop bar --- */}
+      <div className="container-app hidden h-20 items-center justify-between md:flex">
+        <Link href={`/${locale}`} className="flex items-center gap-3">
           <Image src="/images/logo.png" alt="Ladies Dress" width={56} height={47} className="h-12 w-auto object-contain" priority />
+          <span className="hidden text-xs tracking-wide text-charcoal-700/70 lg:block">{tBrand('slogan')}</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
