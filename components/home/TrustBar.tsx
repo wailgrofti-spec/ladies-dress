@@ -15,7 +15,7 @@ export default async function TrustBar() {
       <div
         className="grid grid-cols-3"
         style={{
-          background: '#FDF0EE',
+          background: '#FCECE9',
           borderRadius: '1.25rem',
         }}
       >
