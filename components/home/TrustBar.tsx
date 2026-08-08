@@ -11,12 +11,12 @@ export default async function TrustBar() {
   ];
 
   return (
-    <section className="px-4 py-3 sm:px-6 lg:px-8">
+    <section className="px-3 py-3 sm:px-6 lg:px-8">
       <div
-        className="grid grid-cols-3 divide-x"
+        className="grid grid-cols-3"
         style={{
-          background: '#FAE8E3',
-          borderRadius: '1rem',
+          background: '#FDF0EE',
+          borderRadius: '1.25rem',
         }}
       >
         {items.map((item, i) => {
@@ -24,10 +24,10 @@ export default async function TrustBar() {
           return (
             <div
               key={item.title}
-              className="flex flex-col items-center gap-1 px-2 py-3 text-center"
-              style={i > 0 ? { borderLeft: '1px solid #EAC8C0' } : {}}
+              className="flex flex-col items-center gap-1 px-1.5 py-3.5 text-center"
+              style={i > 0 ? { borderLeft: '1px solid rgba(234, 200, 192, 0.4)' } : {}}
             >
-              <Icon size={18} className="shrink-0" style={{ color: '#C98374' }} />
+              <Icon size={18} strokeWidth={1.25} className="shrink-0" style={{ color: '#C98374' }} />
               <div>
                 <p
                   className="font-body font-semibold text-[#2E1B1B] leading-tight"

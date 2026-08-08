@@ -22,14 +22,14 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div className="flex items-center justify-center gap-1.5 text-[11px] tracking-wide text-charcoal-700/70">
+    <div className="flex items-center justify-center gap-2.5 text-[10px] tracking-widest uppercase font-medium">
       {LANGS.map((l, i) => (
-        <span key={l.code} className="flex items-center gap-1.5">
-          {i > 0 && <span className="text-charcoal-700/30">|</span>}
+        <span key={l.code} className="flex items-center gap-2.5">
+          {i > 0 && <span className="text-[#1A1A1A]/20">|</span>}
           <button
             onClick={() => switchTo(l.code)}
             className={`transition-colors ${
-              l.code === locale ? 'font-semibold text-rosegold-500' : 'hover:text-charcoal-800'
+              l.code === locale ? 'font-bold text-[#1A1A1A]' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]/70'
             }`}
           >
             {l.label}

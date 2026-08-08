@@ -24,7 +24,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FDF6F4]/97 backdrop-blur-sm" style={{ borderBottom: '1px solid #F0DDD9' }}>
+    <header className="sticky top-0 z-40 bg-[#FDF6F4] backdrop-blur-sm" style={{ borderBottom: '1px solid rgba(240, 221, 217, 0.6)' }}>
       {/* ── Mobile bar ── */}
       <div className="relative flex h-14 items-center justify-between px-3 md:hidden">
         {/* Gauche : hamburger + loupe */}
@@ -34,7 +34,7 @@ export default function Header() {
             aria-label="Menu"
             className="rounded-full p-1.5 hover:bg-[#F5E4E0] transition-colors"
           >
-            {open ? <X size={20} strokeWidth={1.8} /> : <Menu size={20} strokeWidth={1.8} />}
+            {open ? <X size={22} strokeWidth={1.5} className="text-[#1A1A1A]" /> : <Menu size={22} strokeWidth={1.5} className="text-[#1A1A1A]" />}
           </button>
           <SearchBox />
         </div>
@@ -45,19 +45,19 @@ export default function Header() {
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-0"
         >
           <span
-            className="font-display leading-none tracking-wide text-[#7D3E3E]"
-            style={{ fontSize: '1.35rem', fontWeight: 600, letterSpacing: '0.04em' }}
+            className="font-serif leading-none tracking-wide text-[#C98374]"
+            style={{ fontSize: '1.4rem', fontWeight: 600, letterSpacing: '0.02em' }}
           >
             Ladies Dress
           </span>
           <span
-            className="font-body text-[10px] tracking-widest text-[#A0706A]/80 mt-0.5"
+            className="font-body text-[9px] tracking-widest text-[#C98374]/80 mt-0.5 uppercase"
             style={{ letterSpacing: '0.18em' }}
           >
             Walk with elegance
           </span>
           {/* Petite décoration */}
-          <span className="text-[#C98374] text-[8px] leading-none">♥</span>
+          <span className="text-[#C98374]/70 text-[7px] leading-none mt-0.5">♥</span>
         </Link>
 
         {/* Droite : cœur + panier */}
@@ -67,7 +67,7 @@ export default function Header() {
             className="relative rounded-full p-1.5 hover:bg-[#F5E4E0] transition-colors"
             aria-label="Favoris"
           >
-            <Heart size={19} strokeWidth={1.8} className="text-[#2E2A27]" />
+            <Heart size={21} strokeWidth={1.5} className="text-[#1A1A1A]" />
             {wishlistCount > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#C98374] text-[10px] font-bold text-white">
                 {wishlistCount}
@@ -79,7 +79,7 @@ export default function Header() {
             className="relative rounded-full p-1.5 hover:bg-[#F5E4E0] transition-colors"
             aria-label={t('cart')}
           >
-            <ShoppingBag size={19} strokeWidth={1.8} className="text-[#2E2A27]" />
+            <ShoppingBag size={21} strokeWidth={1.5} className="text-[#1A1A1A]" />
             {count > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#C98374] text-[10px] font-bold text-white">
                 {count}
@@ -137,7 +137,7 @@ export default function Header() {
       </div>
 
       {/* ── Barre de langue ── */}
-      <div style={{ borderTop: '1px solid #F0DDD9' }} className="py-1">
+      <div style={{ borderTop: '1px solid rgba(240, 221, 217, 0.6)' }} className="py-1.5 flex justify-center">
         <LanguageSwitcher />
       </div>
 
