@@ -1,7 +1,7 @@
 // Construit un lien wa.me avec un message pré-rempli.
 // Numéro configuré via NEXT_PUBLIC_WHATSAPP_NUMBER (format international, sans +).
 export function getWhatsappNumber() {
-  return process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '212657134198';
+  return process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '212688526718';
 }
 
 export function buildWhatsappLink(message: string) {
